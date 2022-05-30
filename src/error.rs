@@ -1,5 +1,7 @@
 use thiserror::Error;
-use crate::{instruction::EscrowInstruction, error::EscrowError};
+
+use solana_program::program_error::ProgramError;
+
 
 
 #[derive(Error, Debug, Copy, Clone)]
@@ -7,6 +9,9 @@ pub enum EscrowError {
     /// Invalid instruction
     #[error("Invalid Instruction")]
     InvalidInstruction,
+    /// Not Rent Exempt
+    #[error("Not Rent Exempt")]
+    NotRentExempt,
 }
 
 impl From<EscrowError> for ProgramError {
